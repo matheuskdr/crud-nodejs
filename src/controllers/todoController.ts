@@ -44,4 +44,13 @@ export const update = async (req: Request, res: Response) => {
   }
 };
 
-export const remove = async () => {};
+export const remove = async (req: Request, res: Response) => {
+  const id = parseInt(req.params.id);
+
+  let todo = await Todo.findByPk(id);
+  if (todo) {
+    await todo.destroy();
+  }
+
+  res.json({});
+};
